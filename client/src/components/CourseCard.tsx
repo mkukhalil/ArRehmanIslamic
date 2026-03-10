@@ -45,7 +45,7 @@ export default function CourseCard({ course, index }: CourseCardProps) {
         </ul>
         
         <Link 
-          href="/contact"
+          href="/contact#booking"
           className="w-full py-3 rounded-lg font-medium bg-secondary text-primary hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2 group-hover:shadow-md"
         >
           Enroll Now

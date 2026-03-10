@@ -56,7 +56,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href="/contact#booking"
               className="px-6 py-2.5 rounded-lg font-medium bg-accent text-primary hover:bg-accent/90 shadow-md shadow-accent/20 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
               data-testid="navbar-book-trial"
             >
@@ -106,7 +106,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                href="/contact"
+                href="/contact#booking"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center mt-4 px-6 py-3 rounded-lg font-medium bg-accent text-primary shadow-md"
                 data-testid="mobile-book-trial"

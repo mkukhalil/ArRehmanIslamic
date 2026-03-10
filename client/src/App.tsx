@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import ScrollToTop from "@/components/ScrollToTop";
+import FloatingTrialButton from "@/components/FloatingTrialButton";
 
 // Pages
 import Home from "./pages/Home";
@@ -35,6 +36,7 @@ function App() {
       <TooltipProvider>
         <Router />
         <FloatingWhatsAppButton />
+        <FloatingTrialButton />
         <ScrollToTop />
         <Toaster />
       </TooltipProvider>

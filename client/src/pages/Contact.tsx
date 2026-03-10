@@ -6,10 +6,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateContactMessage } from "@/hooks/use-contact";
 import { api, type ContactMessageInput } from "@shared/routes";
 import { useToast } from "@/hooks/use-toast";
+import { useEffect, useMemo, useState } from "react";
+
+function scrollToBooking() {
+  const el = document.getElementById("booking");
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export default function Contact() {
   const { toast } = useToast();
   const mutation = useCreateContactMessage();
+  const [childName, setChildName] = useState("");
+  const [notes, setNotes] = useState("");
   
   const form = useForm<ContactMessageInput>({
     resolver: zodResolver(api.contact.submit.input),
@@ -21,14 +30,39 @@ export default function Contact() {
     }
   });
 
+  const baseMessage = useMemo(() => {
+    const parts = [
+      "Free trial booking request",
+      childName?.trim() ? `Child: ${childName.trim()}` : null,
+      notes?.trim() ? `Notes: ${notes.trim()}` : null,
+      "Preferred schedule: Flexible",
+    ].filter(Boolean);
+    return parts.join(" • ");
+  }, [childName, notes]);
+
+  useEffect(() => {
+    const handle = () => {
+      if (window.location.hash === "#booking") scrollToBooking();
+    };
+    handle();
+    window.addEventListener("hashchange", handle);
+    return () => window.removeEventListener("hashchange", handle);
+  }, []);
+
   const onSubmit = (data: ContactMessageInput) => {
-    mutation.mutate(data, {
+    const payload: ContactMessageInput = {
+      ...data,
+      message: baseMessage || data.message,
+    };
+    mutation.mutate(payload, {
       onSuccess: () => {
         toast({
           title: "Message Sent Successfully",
           description: "Jazakallah Khair! We will get back to you shortly.",
         });
         form.reset();
+        setChildName("");
+        setNotes("");
       },
       onError: (error) => {
         toast({
@@ -44,9 +78,11 @@ export default function Contact() {
     <AppLayout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-4xl md:text-5xl font-display text-primary mb-6">Contact Us</h1>
+          <h1 className="text-4xl md:text-5xl font-display text-primary mb-6">
+            Book Your Free Trial Class
+          </h1>
           <p className="text-lg text-foreground/70">
-            Have questions or want to register for a free trial? Reach out to us using the form below or via WhatsApp.
+            Quick booking form for parents. We’ll confirm your timing on WhatsApp/email.
           </p>
         </div>
 
@@ -113,22 +149,38 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             className="lg:col-span-2 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-border"
           >
-            <h3 className="text-2xl font-bold text-primary mb-8">Send us a Message</h3>
+            <div id="booking" className="scroll-mt-28" />
+            <h3 className="text-2xl font-bold text-primary mb-2">Free Trial Booking</h3>
+            <p className="text-sm text-foreground/70 mb-8">
+              Separate <strong className="text-primary">male & female teachers</strong>. Flexible timings. Trial class available.
+            </p>
             
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground/80">Full Name</label>
+                  <label className="text-sm font-medium text-foreground/80">Your Name</label>
                   <input 
                     {...form.register("name")}
                     className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
-                    placeholder="John Doe"
+                    placeholder="Parent / Guardian name"
                   />
                   {form.formState.errors.name && (
                     <p className="text-red-500 text-sm">{form.formState.errors.name.message}</p>
                   )}
                 </div>
                 
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-foreground/80">Child’s Name</label>
+                  <input
+                    value={childName}
+                    onChange={(e) => setChildName(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
+                    placeholder="Child name (optional)"
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground/80">Email Address</label>
                   <input 
@@ -141,32 +193,55 @@ export default function Contact() {
                     <p className="text-red-500 text-sm">{form.formState.errors.email.message}</p>
                   )}
                 </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-foreground/80">WhatsApp Number</label>
+                  <input 
+                    {...form.register("phone")}
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
+                    placeholder="+1 234 567 8900"
+                  />
+                  {form.formState.errors.phone && (
+                    <p className="text-red-500 text-sm">{form.formState.errors.phone.message}</p>
+                  )}
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground/80">Phone Number (with country code)</label>
-                <input 
-                  {...form.register("phone")}
-                  className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
-                  placeholder="+1 234 567 8900"
-                />
-                {form.formState.errors.phone && (
-                  <p className="text-red-500 text-sm">{form.formState.errors.phone.message}</p>
-                )}
+              <div className="rounded-2xl bg-secondary/40 border border-border p-4">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="text-sm font-semibold text-primary">Trial class details</div>
+                    <div className="text-xs text-foreground/70 mt-1">
+                      We’ll contact you to confirm the timing. Share any notes below if needed.
+                    </div>
+                  </div>
+                  <a
+                    href={`https://wa.me/12345678900?text=${encodeURIComponent(baseMessage || "Assalamu alaikum! I want to book a free trial class.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-green-500 text-white px-4 py-2 text-sm font-bold hover:bg-green-400 transition-colors"
+                  >
+                    <MessageCircle size={18} />
+                    WhatsApp
+                  </a>
+                </div>
+
+                <div className="mt-4 space-y-2">
+                  <label className="text-sm font-medium text-foreground/80">Notes (optional)</label>
+                  <textarea
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    rows={3}
+                    className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all resize-none"
+                    placeholder="Best times, teacher preference (male/female), child level, etc."
+                  />
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground/80">Message / Inquiry</label>
-                <textarea 
-                  {...form.register("message")}
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all resize-none"
-                  placeholder="I would like to register for a free trial..."
-                />
-                {form.formState.errors.message && (
-                  <p className="text-red-500 text-sm">{form.formState.errors.message.message}</p>
-                )}
-              </div>
+              <input type="hidden" {...form.register("message")} value={baseMessage} readOnly />
+              {form.formState.errors.message && (
+                <p className="text-red-500 text-sm">{form.formState.errors.message.message}</p>
+              )}
 
               <button 
                 type="submit"

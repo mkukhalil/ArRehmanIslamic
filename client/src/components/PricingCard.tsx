@@ -53,7 +53,7 @@ export default function PricingCard({ plan, index }: PricingCardProps) {
       </div>
 
       <Link
-        href="/contact"
+        href="/contact#booking"
         className={`block w-full py-3 rounded-lg text-center text-sm font-bold transition-all ${
           plan.popular
             ? 'bg-primary text-white shadow-lg hover:bg-primary/90'
