@@ -1,17 +1,16 @@
-import { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const contactMessages = pgTable("contact_messages", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  email: text("email").notNull(),
-  phone: text("phone").notNull(),
-  message: text("message").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
+export const insertContactMessageSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Please enter a valid email"),
+  phone: z.string().min(1, "Phone is required"),
+  message: z.string().min(1, "Message is required"),
 });
 
-export const insertContactMessageSchema = createInsertSchema(contactMessages).omit({ id: true, createdAt: true });
+export const contactMessageSchema = insertContactMessageSchema.extend({
+  id: z.number().int().positive().optional(),
+  createdAt: z.string().optional(),
+});
 
-export type ContactMessage = typeof contactMessages.$inferSelect;
 export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;
+export type ContactMessage = z.infer<typeof contactMessageSchema>;
