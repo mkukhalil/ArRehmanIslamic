@@ -1,0 +1,79 @@
+Build a simple React website for a company named “Al Rehman Islamic Center”. 
+The website should be clean, modern, Islamic-themed, and easy for parents to navigate. 
+Use only plain React (no Next.js, no backend, no Redux). Keep the code simple.
+
+The website must include the following pages using React Router:
+1. Home
+2. About Us
+3. Courses
+4. Teachers
+5. Pricing
+6. Contact
+
+GENERAL REQUIREMENTS:
+- Use functional components only.
+- Use clean and modern layout.
+- Use soft Islamic colors (green, white, gold).
+- Do not use heavy UI libraries; use basic CSS.
+- Place all styling in a single `App.css`.
+- Use a simple navbar and footer on all pages.
+- Make the layout responsive for mobile.
+
+PAGE DETAILS:
+
+HOME PAGE:
+- Hero section with headline: “Learn the Quran Online with Certified Male & Female Teachers”.
+- Subtext: “One-on-one Quran classes for kids and adults”.
+- Buttons: “Book Free Trial”, “Contact Us”.
+- Section with features:
+  - One-on-one online classes
+  - Separate male & female teachers
+  - Kids-friendly teaching
+  - Affordable monthly fee
+
+ABOUT US:
+- Explain the mission: “Providing accessible Quran education globally.”
+- Explain that the center offers online Quran classes professionally.
+- Add a small section: “Why Choose Us?”
+
+COURSES PAGE:
+List simple cards for:
+- Noorani Qaida
+- Quran Reading with Tajweed
+- Hifz (Memorization)
+- Islamic Studies for Kids
+
+TEACHERS PAGE:
+- Show two sections:
+  1. Male Teachers
+  2. Female Teachers
+- Each teacher card contains:
+  - Name (placeholder)
+  - Short description
+  - Experience
+
+PRICING PAGE:
+Create simple pricing cards:
+- 2 classes/week
+- 3 classes/week
+- 5 classes/week
+Also include “Free Trial Class Available”.
+
+CONTACT PAGE:
+A simple contact form with:
+- Name
+- Email
+- Phone
+- Message
+Also show:
+- Phone number (placeholder)
+- WhatsApp button
+- Email: info@alrehmanislamiccenter.com
+
+EXTRA:
+- Provide the full folder structure.
+- Generate ALL necessary React files (App.js, pages, components, App.css, index.js).
+- Code should run immediately without fixes.
+- Use placeholders for images.
+
+Finally, generate everything as a complete working React project.
