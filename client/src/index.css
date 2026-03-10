@@ -9,9 +9,9 @@
     --font-display: 'Amiri', serif;
     --font-sans: 'DM Sans', sans-serif;
 
-    /* Theme: Soft Islamic Colors - Green, White, Gold */
-    --background: 40 33% 98%;      /* Warm Off-White */
-    --foreground: 160 20% 15%;     /* Very Dark Green/Gray */
+    /* Theme: Islamic Colors - Primary Green #0F5132, Soft Green #DFF3E3, Gold #D4AF37 */
+    --background: 40 33% 98%;      /* Off-White */
+    --foreground: 160 20% 15%;     /* Dark Green/Gray */
     
     --card: 0 0% 100%;             /* Pure White */
     --card-foreground: 160 20% 15%;
@@ -19,16 +19,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 160 20% 15%;
     
-    --primary: 158 64% 22%;        /* Rich Islamic Green */
+    --primary: 158 78% 18%;        /* Primary Green #0F5132 */
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 152 40% 92%;      /* Very Light Green */
-    --secondary-foreground: 158 64% 22%;
+    --secondary: 152 62% 88%;      /* Soft Green #DFF3E3 */
+    --secondary-foreground: 158 78% 18%;
     
     --muted: 40 20% 90%;
     --muted-foreground: 160 10% 40%;
     
-    --accent: 43 74% 49%;          /* Soft Gold */
+    --accent: 43 85% 52%;          /* Gold #D4AF37 */
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 84% 60%;
@@ -36,9 +36,9 @@
 
     --border: 152 20% 85%;
     --input: 152 20% 85%;
-    --ring: 158 64% 22%;
+    --ring: 158 78% 18%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
   }
 
   * {
@@ -61,13 +61,43 @@
 }
 
 @layer utilities {
+  .container {
+    @apply max-w-6xl mx-auto px-4 md:px-6;
+  }
+
   .text-balance {
     text-wrap: balance;
   }
+
   .glass {
     @apply bg-white/80 backdrop-blur-md border border-white/20;
   }
+
   .pattern-bg {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23105c38' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230F5132' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .shadow-card {
+    @apply shadow-sm;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Mobile-first responsive utilities */
+  @media (max-width: 768px) {
+    body {
+      font-size: 15px;
+    }
+
+    h1 {
+      @apply text-3xl;
+    }
+
+    h2 {
+      @apply text-2xl;
+    }
+
+    .container {
+      @apply px-4;
+    }
   }
 }

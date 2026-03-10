@@ -4,6 +4,8 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
+import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // Pages
 import Home from "./pages/Home";
@@ -32,6 +34,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Router />
+        <FloatingWhatsAppButton />
+        <ScrollToTop />
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>

@@ -57,7 +57,15 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="px-6 py-2.5 rounded-full font-medium bg-primary text-white hover:bg-primary/90 shadow-md shadow-primary/20 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+              className="px-6 py-2.5 rounded-lg font-medium bg-accent text-primary hover:bg-accent/90 shadow-md shadow-accent/20 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+              data-testid="navbar-book-trial"
+            >
+              Book Free Trial
+            </Link>
+            <Link
+              href="/contact"
+              className="px-6 py-2.5 rounded-lg font-medium bg-primary text-white hover:bg-primary/90 shadow-md shadow-primary/20 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+              data-testid="navbar-contact"
             >
               Contact Us
             </Link>
@@ -100,7 +108,16 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center mt-4 px-6 py-3 rounded-full font-medium bg-primary text-white shadow-md"
+                className="w-full text-center mt-4 px-6 py-3 rounded-lg font-medium bg-accent text-primary shadow-md"
+                data-testid="mobile-book-trial"
+              >
+                Book Free Trial
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center px-6 py-3 rounded-lg font-medium bg-primary text-white shadow-md"
+                data-testid="mobile-contact"
               >
                 Contact Us
               </Link>

@@ -1,0 +1,86 @@
+I want you to upgrade my existing React website for “Al Rehman Islamic Center”.
+
+Apply the following improvements WITHOUT rewriting the entire project from scratch. Only modify the parts needed.
+
+========================================
+MOBILE-FRIENDLY IMPROVEMENTS (TOP PRIORITY)
+========================================
+
+1. Convert the Navbar into a MOBILE-RESPONSIVE NAVBAR:
+   - Add a hamburger menu on screens below 768px.
+   - When clicked, open a slide-in menu (left or right is fine).
+   - Make menu items large and easy to tap.
+   - Hide desktop menu on mobile using CSS breakpoints.
+
+2. Make ALL pages fully responsive:
+   - Home hero section stacks vertically on mobile.
+   - Courses, Teachers, Pricing cards should switch to 1-column layout below 768px.
+   - Add proper padding and spacing for small screens.
+   - Ensure images scale correctly using max-width: 100%.
+
+3. Add a container class to prevent text stretching:
+   Use something like:
+   .container {
+     max-width: 1100px;
+     margin: 0 auto;
+     padding: 0 16px;
+   }
+
+4. Reduce oversized paddings on mobile screens.
+
+========================================
+VISUAL IMPROVEMENTS
+========================================
+
+1. Upgrade color palette:
+   - Primary Green: #0F5132
+   - Soft Green: #DFF3E3
+   - Gold Accent: #D4AF37
+   - Background White: #FFFFFF
+
+2. Apply modern card styling:
+   - border-radius: 12px
+   - light border (#e8e8e8)
+   - soft shadow: 0 4px 12px rgba(0,0,0,0.08)
+
+3. Make hero text cleaner and more readable on mobile.
+4. Optimize spacing, font sizes, and button styling.
+
+========================================
+USABILITY IMPROVEMENTS
+========================================
+
+1. Add a floating WhatsApp button at the bottom-right corner.
+2. Add a “Book Free Trial” button in the Navbar (desktop + mobile).
+3. Add a simple “Scroll to Top” button.
+
+========================================
+CODE STRUCTURE IMPROVEMENTS
+========================================
+
+1. Convert repeated UI into small reusable components:
+   - <PricingCard />
+   - <TeacherCard />
+   - <CourseCard />
+
+2. Add lazy loading to all images:
+   <img loading="lazy" />
+
+3. Clean up App.css and organize responsive styles using media queries.
+
+========================================
+WHAT I EXPECT YOU TO RETURN
+========================================
+
+- Updated Navbar component with mobile hamburger and slide menu.
+- Updated CSS with proper mobile breakpoints.
+- Updated page components for mobile stacking.
+- Implementation of floating WhatsApp button.
+- Cleaner card components with new styles.
+- Any new reusable components created.
+- All modified files in a clear format.
+- Do NOT remove my existing content; only enhance it.
+
+========================================
+
+Make sure the final output is production-ready, responsive, and visually polished while keeping the code simple and clean.

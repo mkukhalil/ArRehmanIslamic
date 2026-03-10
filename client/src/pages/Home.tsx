@@ -37,6 +37,7 @@ export default function Home() {
             src="https://pixabay.com/get/g9e4746b2dfe88ee003888ae64a415b2d105dbf2d8f75ece3a584522184e5f88880fce439ae9dd097a255d56a31dd9d80f62b417822a3bde1acf9d72e9a093ba6_1280.jpg" 
             alt="Islamic Pattern Background" 
             className="w-full h-full object-cover opacity-10"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/95 to-background"></div>
         </div>
